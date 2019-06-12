@@ -1,0 +1,113 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.5.0/css/all.css' integrity='sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU' crossorigin='anonymous'>
+
+<button class="btn" style="float: right" (click)="close()"><i class="fa fa-close"></i></button><br>
+<form class="well form-horizontal" 
+     [formGroup]="updateBookingForm"
+     (ngSubmit)="editBooking(updateBookingForm.value)">
+
+    <fieldset>
+        <div class="form-group">
+            <label class="col-md-4 control-label">Booking Id</label>
+            <div class="col-md-8 inputGroupContainer">
+                    <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span><strong>{{bookingid}}</strong></div>
+            </div>
+        </div>
+        <div class="form-group" >
+            <label class="col-md-4 control-label">Client Name</label>
+                <div class="col-md-8 inputGroupContainer">
+                    <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                         <select class="form-control" formControlName="clientname" 
+                        required >
+<!--                                 (change)="ChangingValue($event)" [value]="defaultClient._id">-->
+<!--                          <option selected>Select Car</option>-->
+<!--                             <option value="{{defaultClient._id}}" selected>{{defaultClient.clientName}}</option>-->
+                          <option *ngFor="let client of clients" value="{{client._id}}">{{client.clientName}}
+                        </option>
+                        </select>
+                    </div>
+                </div>
+        </div>
+       
+        <div class="form-group">
+            <label class="col-md-4 control-label">Booking Date</label>
+                <div class="col-md-8 inputGroupContainer">
+                    <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span><input id="bookingDate" name="bookingdate" placeholder="Booking Date" class="form-control" required="true" value="" type="text" formControlName="bookingdate"></div>
+                </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label">From</label>
+                <div class="col-md-8 inputGroupContainer">
+                    <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-upload"></i></span><input id="fromCity" name="fromcity" placeholder="From City" class="form-control" required="true" value="" type="text" formControlName="fromcity"></div>
+                </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label">To</label>
+                <div class="col-md-8 inputGroupContainer">
+                    <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-download"></i></span><input id="toCity" name="tocity" placeholder="To City" class="form-control" required="true" value="" type="text" formControlName="tocity"></div>
+                </div>
+        </div>
+         <div class="form-group">
+            <label class="col-md-4 control-label">PickUp Date</label>
+                <div class="col-md-8 inputGroupContainer">
+                    <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span><input id="pickupDate" name="pickupdate" placeholder="Pickup Date" class="form-control" required="true" value="" type="text" formControlName="pickupdate"></div>
+                </div>
+        </div>
+         <div class="form-group">
+            <label class="col-md-4 control-label">Return Date</label>
+                <div class="col-md-8 inputGroupContainer">
+                    <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span><input id="returnDate" name="returndate" placeholder="Return Date" class="form-control" required="true" value="" type="text" formControlName="returndate"></div>
+                </div>
+        </div>
+         <div class="form-group">
+            <label class="col-md-4 control-label">Car</label>
+                <div class="col-md-8 inputGroupContainer">
+                    <div class="input-group"><span class="input-group-addon"><i class="fas fa-car-side"></i></span>
+
+                    <select class="form-control" formControlName="carname" required >
+<!--                            (change)="ChangingValue($event)" value="{{defaultCar._id}}">-->
+<!--                          <option selected>Select Car</option>-->
+<!--                          <option value="{{defaultCar._id}}" selected>{{defaultCar.carName}}</option>-->
+                          <option *ngFor="let car of cars" value="{{car._id}}">{{car.carName}}
+                        </option> 
+                        </select>
+                    </div>
+                </div>
+        </div>
+         <div class="form-group">
+            <label class="col-md-4 control-label">Driver</label>
+                <div class="col-md-8 inputGroupContainer">
+                    <div class="input-group"><span class="input-group-addon"><i class="fas fa-address-card"></i></span>
+
+                         <select class="form-control" formControlName="drivername" required>
+<!--                          <option selected value="{{currentBooking.clientName._id}}">{{currentBooking.clientName.clientName}}</option>-->
+                          <option *ngFor="let driver of drivers" value="{{driver._id}}">{{driver.driverName}}
+                        </option>
+                        </select>
+                    </div>
+                </div>
+        </div>
+         <div class="col-sm-12 controls">
+         <input class="btn btn-success" mat-raised-button (click)="dialogRef.close()" type="submit" value="Update Booking" />
+        
+        </div>
+    </fieldset>
+</form>
+
+<!--
+<script>
+function openClient() {
+  var x = document.getElementById("clientForm");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+</script>
+-->
+<!--<pre>{{ updateBookingForm.value | json }}</pre>-->

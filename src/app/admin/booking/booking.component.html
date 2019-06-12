@@ -1,0 +1,51 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div class="add-btn">
+ <button class="btn btn-primary" routerLink="./add" mat-raised-button (click)="openAddBookingDialog()">Add</button><br>
+</div>
+
+<router-outlet></router-outlet>
+<hr>
+
+<table class="table table-bordred table-striped">
+
+    <!--Table head-->
+    <thead>
+        <tr>
+            <th>S.No.</th>
+            <th>Client Name</th>
+            <th>Booking Date</th>
+            <th>From</th>
+            <th>To</th>
+            <th>PickUp Date</th>
+            <th>Return Date</th>
+            <th>Car</th>
+            <th>Driver</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <!--Table head-->
+
+    <!--Table body-->
+    <tbody>
+        <tr class="table-info" *ngFor="let booking of bookings;let i = index">
+            <th scope="row">{{ i+1 }}</th>
+            <td>{{ booking.clientName.clientName}}</td>
+            <td>{{ booking.bookingDate | date: 'dd/MM/yyyy' }}</td>
+            <td>{{ booking.fromCity }}</td>
+            <td>{{ booking.toCity  }}</td>
+            <td>{{ booking.pickupDate | date: 'dd/MM/yyyy'  }}</td>
+            <td>{{ booking.returnDate | date: 'dd/MM/yyyy'}}</td>
+            <td>{{ booking.car.carName }} {{booking.car.carNo}}</td>
+            <td>{{ booking.driver.driverName  }}</td>
+               
+            <td><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" [routerLink]="['./edit', booking._id]" mat-raised-button (click)="openEditBookingDialog(booking._id)" data-title="Edit" data-toggle="modal" ><span class="glyphicon glyphicon-pencil"></span></button></p></td>
+            <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" (click)="deleteBooking(booking._id)"><span class="glyphicon glyphicon-trash"></span></button></p></td>
+        </tr>
+    </tbody>
+    <!--Table body-->
+
+</table>

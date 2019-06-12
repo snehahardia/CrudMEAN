@@ -1,0 +1,35 @@
+.admin-header ul {
+/*
+    padding: 0;
+    margin: 0;
+     list-style-type: none;
+*/
+    padding: 0;
+    list-style-type: none;
+}
+
+.admin-header ul li {
+    float: left;
+    display: table-column-group;
+}
+
+.sidebar {
+    float:inherit;
+    transition: 0.5s;
+}
+
+.mainbar {
+    transition: margin-left .5s;
+    float:inherit;
+    margin-left: 90px;
+}
+
+.sidebar:hover + .mainbar {
+     margin-left: 280px; 
+}
+/*
+.mainbar :hover {
+    margin-left: 250px;  
+}
+*/
+

@@ -1,0 +1,33 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.5.0/css/all.css' integrity='sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU' crossorigin='anonymous'>
+
+<button class="btn" style="float: right" (click)="close()"><i class="fa fa-close"></i></button><br>
+<form class="well form-horizontal" 
+      [formGroup]="carForm"
+      (ngSubmit)="saveCar(carForm.value)">
+    <fieldset>
+        <div class="form-group">
+            <label class="col-md-4 control-label">Car Name</label>
+                <div class="col-md-8 inputGroupContainer">
+                    <div class="input-group"><span class="input-group-addon"><i class="fas fa-car"></i></span><input id="carName" name="carname" placeholder="Car Name" class="form-control" required="true" value="" type="text" formControlName="carname"></div>
+                </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label">Car Number</label>
+                <div class="col-md-8 inputGroupContainer">
+                    <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-equalizer"></i></span><input id="carNumber" name="carno" placeholder="Car Number" class="form-control" required="true" value="" type="text" formControlName="carno"></div>
+                </div>
+        </div>
+         <div class="col-sm-12 controls">
+         <input class="btn btn-success" mat-raised-button (click)="dialogRef.close()" type="submit" value="Add Car" />
+        
+        </div>
+    </fieldset>
+</form>
+ 
+<!--
+<p>add client works</p>
+<button (click)="onNoClick()">Close</button>-->
